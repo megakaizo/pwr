@@ -13,3 +13,10 @@ const ENERGY_CURRENT: &str = "/sys/class/power_supply/BAT0/energy_now";
 const POWER_DRAW: &str = "/sys/class/power_supply/BAT0/power_now";
 const VOLTAGE: &str = "/sys/class/power_supply/BAT0/voltage_now";
 const TECHNOLOGY: &str = "/sys/class/power_supply/BAT0/technology";
+
+
+pub fn read_param(path: &str) -> Result<String, Box<dyn Error>> {
+    let param = fs::read_to_string(path)?;
+    return Ok(param) 
+}
+
