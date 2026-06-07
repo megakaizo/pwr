@@ -1,16 +1,23 @@
 use clap::{Parser, Subcommand};
 
-
 #[derive(Parser)]
-struct Cli {
+pub struct Cli {
     #[command(subcommand)]
-    command: Commands
+    pub command: Commands,
 }
-
 
 #[derive(Subcommand)]
 pub enum Commands {
     Info,
-    ConservationOn,
-    ConservationOff,
+
+    Conservation {
+        #[command(subcommand)]
+        action: ConservationAction,
+    },
+}
+
+#[derive(Subcommand)]
+pub enum ConservationAction {
+    On,
+    Off,
 }
