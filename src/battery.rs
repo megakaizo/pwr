@@ -17,20 +17,19 @@ const VOLTAGE: &str = "/sys/class/power_supply/BAT0/voltage_now";
 const TECHNOLOGY: &str = "/sys/class/power_supply/BAT0/technology";
 
 
-
 pub struct BatteryInfo {
-    charge_status: String,
-    capacity: u8,
-    manufacturer: String,
-    model: String,
-    energy_design: u32,
-    energy_current: u32,
-    cycle_count: i32,
-    energy_now: u32,
-    power_draw: i32,
-    voltage: i32,
-    technology: String,
-    conservation: Option<bool>,
+    pub charge_status: String,
+    pub capacity: u8,
+    pub manufacturer: String,
+    pub model: String,
+    pub energy_design: u32,
+    pub energy_current: u32,
+    pub cycle_count: i32,
+    pub energy_now: u32,
+    pub power_draw: i32,
+    pub voltage: i32,
+    pub technology: String,
+    pub conservation: Option<bool>,
 }
 
 impl BatteryInfo {
