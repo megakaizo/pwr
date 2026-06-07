@@ -16,7 +16,7 @@ pub fn set_conservation(mode: bool) -> Result<(), Box<dyn Error>> {
 
 pub fn read_conservation() -> Result<bool, Box<dyn Error>> {
     let mode = fs::read_to_string(CONSERVATION_MODE)?;
-    match mode.as_str() {
+    match mode.as_str().trim() {
         "1" => Ok(true),
         "0" => Ok(false),
         other => Err(format!("Invalid conservation mode: {other}").into()),

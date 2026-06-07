@@ -29,7 +29,7 @@ pub struct BatteryInfo {
     pub power_draw: i32,
     pub voltage: i32,
     pub technology: String,
-    pub conservation: Option<bool>,
+    pub conservation_mode: Option<bool>,
 }
 
 impl BatteryInfo {
@@ -38,7 +38,7 @@ impl BatteryInfo {
         return Ok(param) 
     }
     
-    fn read_conservation() -> Option<bool> {
+    fn read_conservation_mode() -> Option<bool> {
         let conservation = read_conservation();
         match conservation {
             Err(_) => None,
@@ -48,19 +48,19 @@ impl BatteryInfo {
     }
 
     pub fn read_info() -> Result<Self, Box<dyn Error>> {
-        let charge_status = Self::read_param(CHARGE_STATUS)?;
-        let capacity: u8 = Self::read_param(CAPACITY)?.parse()?;
-        let manufacturer = Self::read_param(MANUFACTURER)?;
-        let model = Self::read_param(MODEL_NAME)?;
-        let technology = Self::read_param(TECHNOLOGY)?;
-        let energy_design: u32 = Self::read_param(ENERGY_DESIGN)?.parse()?;
-        let energy_current: u32 = Self::read_param(ENERGY_CURRENT)?.parse()?;
-        let energy_now: u32 = Self::read_param(ENERGY_NOW)?.parse()?;
-        let cycle_count: i32 = Self::read_param(CYCLE_COUNT)?.parse()?;
-        let power_draw: i32 = Self::read_param(POWER_DRAW)?.parse()?;
-        let voltage: i32 = Self::read_param(VOLTAGE)?.parse()?;
+        let charge_status = Self::read_param(CHARGE_STATUS)?.trim().to_string();
+        let capacity: u8 = Self::read_param(CAPACITY)?.trim().parse()?;
+        let manufacturer = Self::read_param(MANUFACTURER)?.trim().to_string();
+        let model = Self::read_param(MODEL_NAME)?.trim().to_string();
+        let technology = Self::read_param(TECHNOLOGY)?.trim().to_string();
+        let energy_design: u32 = Self::read_param(ENERGY_DESIGN)?.trim().parse()?;
+        let energy_current: u32 = Self::read_param(ENERGY_CURRENT)?.trim().parse()?;
+        let energy_now: u32 = Self::read_param(ENERGY_NOW)?.trim().parse()?;
+        let cycle_count: i32 = Self::read_param(CYCLE_COUNT)?.trim().parse()?;
+        let power_draw: i32 = Self::read_param(POWER_DRAW)?.trim().parse()?;
+        let voltage: i32 = Self::read_param(VOLTAGE)?.trim().parse()?;
         
-        let conservation = Self::read_conservation(); 
+        let conservation_mode = Self::read_conservation_mode(); 
         
         return Ok( Self {
             charge_status, 
@@ -74,7 +74,7 @@ impl BatteryInfo {
             power_draw, 
             voltage, 
             technology, 
-            conservation,
+            conservation_mode,
         } )
     }   
 }
