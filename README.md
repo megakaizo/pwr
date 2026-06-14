@@ -33,13 +33,13 @@ Conservation:  ON
 
 ## Installation
 
-```
+```bash
 cargo install --git https://github.com/megakaizo/pwr
 ```
 
 or
 
-```
+```bash
 git clone git@github.com:megakaizo/pwr.git
 
 cd pwr
@@ -52,7 +52,7 @@ sudo cp target/release/pwr /usr/local/bin/
 
 ## Usage
 
-```
+```bash
 # Show battery info
 pwr info
 
@@ -69,7 +69,7 @@ sudo pwr conservation off
 - ideapad_acpi driver for conservation mode (Lenovo Ideapad):
 - root for conservation mode changes
 for check:
-```
+```bash
 ls /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode
 ```
 if file exists, conservation mode switch is enable
@@ -77,6 +77,6 @@ if file exists, conservation mode switch is enable
 
 ## How it works
 
-Reads battery data from sysfs (/sys/class/power_supply/) 
-and writes to the ideapad_acpi driver interface (/sys/bus/platform/drivers/ideapad_acpi/) to toggle conservation mode.
+Reads battery data from sysfs (`/sys/class/power_supply/`) 
+and writes to the ideapad_acpi driver interface (`/sys/bus/platform/drivers/ideapad_acpi/`) to toggle conservation mode.
 
